@@ -60,7 +60,8 @@ const STORIES_DATA = {
 
 // --- Page & Scroll Navigation ---
 function enterMagazine() {
-  document.getElementById('editors-note').scrollIntoView({ behavior: 'smooth' });
+  const el = document.getElementById('editors-note');
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
 
 function scrollToSection(id) {
@@ -70,13 +71,15 @@ function scrollToSection(id) {
 
 // Update Page Indicator on Scroll
 window.addEventListener('scroll', () => {
+  const pageIndicator = document.getElementById('page-indicator');
+  if (!pageIndicator) return;
   const sections = document.querySelectorAll('section, header');
   const scrollPos = window.scrollY + 200;
   
   sections.forEach((sec, idx) => {
     if (scrollPos >= sec.offsetTop && scrollPos < (sec.offsetTop + sec.offsetHeight)) {
       const pageNum = String(idx + 1).padStart(2, '0');
-      document.getElementById('page-indicator').textContent = `ISSUE 01 // PG. ${pageNum} OF 16`;
+      pageIndicator.textContent = `ISSUE 01 // PG. ${pageNum} OF 16`;
     }
   });
 });
@@ -84,11 +87,11 @@ window.addEventListener('scroll', () => {
 // --- Index Modal Controls ---
 function toggleIndexModal() {
   const modal = document.getElementById('indexModal');
-  modal.classList.toggle('open');
+  if (modal) modal.classList.toggle('open');
 }
 
 function closeIndexModalOnBackdrop(e) {
-  if (e.target.id === 'indexModal') toggleIndexModal();
+  if (e.target && e.target.id === 'indexModal') toggleIndexModal();
 }
 
 // --- Story Reader Modal Controls ---
@@ -96,28 +99,36 @@ function openStoryModal(id) {
   const story = STORIES_DATA[id];
   if (!story) return;
 
-  document.getElementById('modalCategoryTag').textContent = story.category;
-  document.getElementById('modalReadTime').textContent = story.readTime;
-  
-  document.getElementById('modalStoryBody').innerHTML = `
-    <h2 class="font-serif-header" style="font-size:2.2rem; line-height:1.15; margin-bottom:0.75rem;">${story.title}</h2>
-    <p class="font-serif-body" style="font-style:italic; color:var(--color-ink-muted); font-size:1.2rem; margin-bottom:2rem; border-bottom:var(--border-editorial); padding-bottom:1.5rem;">
-      ${story.subtitle}
-    </p>
-    ${story.content}
-  `;
+  const tag = document.getElementById('modalCategoryTag');
+  const time = document.getElementById('modalReadTime');
+  const body = document.getElementById('modalStoryBody');
+  const modal = document.getElementById('readerModal');
 
-  document.getElementById('readerModal').classList.add('open');
+  if (tag) tag.textContent = story.category;
+  if (time) time.textContent = story.readTime;
+  
+  if (body) {
+    body.innerHTML = `
+      <h2 class="font-serif-header" style="font-size:2.2rem; line-height:1.15; margin-bottom:0.75rem;">${story.title}</h2>
+      <p class="font-serif-body" style="font-style:italic; color:var(--color-ink-muted); font-size:1.2rem; margin-bottom:2rem; border-bottom:var(--border-editorial); padding-bottom:1.5rem;">
+        ${story.subtitle}
+      </p>
+      ${story.content}
+    `;
+  }
+
+  if (modal) modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
 function closeStoryModal() {
-  document.getElementById('readerModal').classList.remove('open');
+  const modal = document.getElementById('readerModal');
+  if (modal) modal.classList.remove('open');
   document.body.style.overflow = 'auto';
 }
 
 function closeReaderModalOnBackdrop(e) {
-  if (e.target.id === 'readerModal') closeStoryModal();
+  if (e.target && e.target.id === 'readerModal') closeStoryModal();
 }
 
 // --- Voice Switcher (Content Lab) ---
@@ -132,62 +143,74 @@ const VOICE_MAP = {
 function switchVoice(voiceKey, btn) {
   const buttons = document.querySelectorAll('.btn-voice');
   buttons.forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  if (btn) btn.classList.add('active');
 
   const outputBox = document.getElementById('voiceOutput');
-  outputBox.style.opacity = 0;
-  setTimeout(() => {
-    outputBox.textContent = VOICE_MAP[voiceKey];
-    outputBox.style.opacity = 1;
-  }, 150);
+  if (outputBox) {
+    outputBox.style.opacity = '0';
+    setTimeout(() => {
+      outputBox.textContent = VOICE_MAP[voiceKey] || '';
+      outputBox.style.opacity = '1';
+    }, 150);
+  }
 }
 
 // --- Draggable Before / After Slider ---
-const slider = document.getElementById('beforeAfterSlider');
-const sliderAfter = document.getElementById('sliderAfter');
-const sliderHandle = document.getElementById('sliderHandle');
+function initSlider() {
+  const slider = document.getElementById('beforeAfterSlider');
+  const sliderAfter = document.getElementById('sliderAfter');
+  const sliderHandle = document.getElementById('sliderHandle');
 
-if (slider && sliderAfter && sliderHandle) {
-  let isDragging = false;
+  if (slider && sliderAfter && sliderHandle) {
+    let isDragging = false;
 
-  const setSliderPosition = (x) => {
-    const rect = slider.getBoundingClientRect();
-    let offsetX = x - rect.left;
-    if (offsetX < 0) offsetX = 0;
-    if (offsetX > rect.width) offsetX = rect.width;
+    const setSliderPosition = (x) => {
+      const rect = slider.getBoundingClientRect();
+      let offsetX = x - rect.left;
+      if (offsetX < 0) offsetX = 0;
+      if (offsetX > rect.width) offsetX = rect.width;
 
-    const percentage = (offsetX / rect.width) * 100;
-    sliderAfter.style.width = `${percentage}%`;
-    sliderHandle.style.left = `${percentage}%`;
-  };
+      const percentage = (offsetX / rect.width) * 100;
+      sliderAfter.style.width = `${percentage}%`;
+      sliderHandle.style.left = `${percentage}%`;
+    };
 
-  sliderHandle.addEventListener('mousedown', () => isDragging = true);
-  window.addEventListener('mouseup', () => isDragging = false);
-  window.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    setSliderPosition(e.clientX);
-  });
+    sliderHandle.addEventListener('mousedown', () => isDragging = true);
+    window.addEventListener('mouseup', () => isDragging = false);
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      setSliderPosition(e.clientX);
+    });
 
-  // Touch support for mobile devices
-  sliderHandle.addEventListener('touchstart', () => isDragging = true);
-  window.addEventListener('touchend', () => isDragging = false);
-  window.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    setSliderPosition(e.touches[0].clientX);
-  });
+    // Touch support for mobile devices
+    sliderHandle.addEventListener('touchstart', () => isDragging = true);
+    window.addEventListener('touchend', () => isDragging = false);
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      setSliderPosition(e.touches[0].clientX);
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSlider);
+} else {
+  initSlider();
 }
 
 // --- Contact Modal Controls ---
 function openContactModal() {
-  document.getElementById('contactModal').classList.add('open');
+  const modal = document.getElementById('contactModal');
+  if (modal) modal.classList.add('open');
 }
 
 function closeContactModal() {
-  document.getElementById('contactModal').classList.remove('open');
+  const modal = document.getElementById('contactModal');
+  if (modal) modal.classList.remove('open');
 }
 
 function closeContactModalOnBackdrop(e) {
-  if (e.target.id === 'contactModal') closeContactModal();
+  if (e.target && e.target.id === 'contactModal') closeContactModal();
 }
 
 function handleFormSubmit(e) {
@@ -195,3 +218,19 @@ function handleFormSubmit(e) {
   alert("Thank you! Your message has been sent to Maryada. She'll get back to you shortly.");
   closeContactModal();
 }
+
+// --- Expose all functions to global window scope ---
+// Crucial for bundled modules (Vite / Netlify) where inline HTML onclick="..." expects global scope
+window.enterMagazine = enterMagazine;
+window.scrollToSection = scrollToSection;
+window.toggleIndexModal = toggleIndexModal;
+window.closeIndexModalOnBackdrop = closeIndexModalOnBackdrop;
+window.openStoryModal = openStoryModal;
+window.closeStoryModal = closeStoryModal;
+window.closeReaderModalOnBackdrop = closeReaderModalOnBackdrop;
+window.switchVoice = switchVoice;
+window.openContactModal = openContactModal;
+window.closeContactModal = closeContactModal;
+window.closeContactModalOnBackdrop = closeContactModalOnBackdrop;
+window.handleFormSubmit = handleFormSubmit;
+
