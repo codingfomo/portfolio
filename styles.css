@@ -1,0 +1,1292 @@
+/* ==========================================================================
+   MARYADA — ISSUE 01 | Editorial Magazine & Content Portfolio
+   Design System: Independent Magazine × Modern Editorial × Writer's Notebook
+   ========================================================================== */
+
+/* --- Fonts Integration --- */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Editorial Palette with Vibrant Popping Accent Colors */
+  --bg-paper: #F8F5EE;
+  --bg-paper-light: #FAF8F3;
+  --bg-paper-dark: #EBE5D8;
+  --bg-card: #F1ECE0;
+  
+  --color-ink: #181716;
+  --color-ink-muted: #524E47;
+  --color-ink-light: #8A857B;
+  --color-ink-faint: #C5BFB0;
+  
+  /* Popping Colors */
+  --color-accent: #D9381E;       /* Vibrant Terracotta Crimson */
+  --color-pop-orange: #FF6B35;   /* Popping Tangerine Orange */
+  --color-pop-yellow: #FFD166;   /* Electric Canary Yellow */
+  --color-pop-teal: #06D6A0;     /* Popping Emerald Teal */
+  --color-pop-blue: #118AB2;     /* Electric Cobalt Blue */
+  --color-pop-purple: #8B5CF6;   /* Vivid Purple */
+  --color-highlight: #FFF066;    /* Vibrant highlighter yellow */
+
+  --border-editorial: 1px solid #D8D2C2;
+  --border-editorial-dark: 2px solid #181716;
+  --border-dashed: 1px dashed #A39D8E;
+
+  /* Typography Stacks */
+  --font-serif-header: 'Playfair Display', Georgia, serif;
+  --font-serif-body: 'Newsreader', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-handwriting: 'Caveat', cursive, sans-serif;
+
+  /* Spacing & Layout */
+  --site-max-width: 1240px;
+  --nav-height: 64px;
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  background-color: var(--bg-paper);
+  background-image: radial-gradient(rgba(24, 23, 22, 0.035) 1px, transparent 0);
+  background-size: 24px 24px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle Paper Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.2;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* --- Selection Styling --- */
+::selection {
+  background: var(--color-pop-yellow);
+  color: var(--color-ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+/* --- Popping Design Badges & Washi Tapes --- */
+.pop-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+}
+
+.pop-badge.orange { background-color: var(--color-pop-orange); color: #FFF; }
+.pop-badge.yellow { background-color: var(--color-pop-yellow); color: #181716; }
+.pop-badge.teal { background-color: var(--color-pop-teal); color: #181716; }
+.pop-badge.blue { background-color: var(--color-pop-blue); color: #FFF; }
+.pop-badge.purple { background-color: var(--color-pop-purple); color: #FFF; }
+
+.washi-tape {
+  position: absolute;
+  top: -12px;
+  left: 30px;
+  width: 90px;
+  height: 24px;
+  background-color: rgba(255, 225, 100, 0.7);
+  transform: rotate(-3deg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border-left: 1px dashed rgba(0,0,0,0.2);
+  border-right: 1px dashed rgba(0,0,0,0.2);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.washi-tape.pink { background-color: rgba(255, 120, 150, 0.7); transform: rotate(2deg); left: auto; right: 40px; }
+
+/* --- Typography Helpers --- */
+.font-serif-header { font-family: var(--font-serif-header); }
+.font-serif-body { font-family: var(--font-serif-body); }
+.font-mono { font-family: var(--font-mono); }
+.font-handwriting { font-family: var(--font-handwriting); }
+
+.editorial-title {
+  font-family: var(--font-serif-header);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.issue-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #FFF;
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-ink);
+  padding: 0.3rem 0.75rem;
+  font-weight: 700;
+  box-shadow: 3px 3px 0px var(--color-ink);
+}
+
+.handwritten-annotation {
+  font-family: var(--font-handwriting);
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  transform: rotate(-2deg);
+  display: inline-block;
+  font-weight: 600;
+}
+
+.thin-hr {
+  border: none;
+  border-top: var(--border-editorial);
+  margin: 2.5rem 0;
+}
+
+/* --- Container --- */
+.container {
+  width: 92%;
+  max-width: var(--site-max-width);
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   01 — COVER / LANDING PAGE
+   ========================================================================== */
+#cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem 1.5rem;
+  position: relative;
+  border-bottom: 3px solid var(--color-ink);
+  background-color: var(--bg-paper-light);
+  overflow: hidden;
+}
+
+.cover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: var(--border-editorial-dark);
+  padding-bottom: 1.25rem;
+}
+
+.cover-issue-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-ink-muted);
+  line-height: 1.4;
+}
+
+.cover-main-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.cover-title-box {
+  position: relative;
+}
+
+.cover-masthead {
+  font-size: clamp(3.8rem, 10.5vw, 9.2rem);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--color-ink);
+  text-transform: uppercase;
+}
+
+.cover-issue-tag {
+  font-family: var(--font-mono);
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-accent);
+  margin: 0.75rem 0 1.5rem 0;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cover-tagline {
+  font-family: var(--font-serif-body);
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-style: italic;
+  color: var(--color-ink-muted);
+  max-width: 32ch;
+  line-height: 1.3;
+}
+
+.cover-image-container {
+  position: relative;
+}
+
+.cover-frame {
+  border: 3px solid var(--color-ink);
+  padding: 0.75rem;
+  background-color: #FFF;
+  box-shadow: 14px 14px 0px var(--color-pop-orange);
+  position: relative;
+}
+
+/* Cartoon illustration crisp rendering - no blur */
+.cover-art-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+  filter: none !important; /* Ensuring absolutely no blur or sepia */
+  image-rendering: -webkit-optimize-contrast;
+  border: 1px solid var(--color-ink);
+}
+
+.cover-lines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 2rem;
+}
+
+.cover-line-item {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  padding: 0.85rem 1.1rem;
+  border-left: 4px solid var(--color-accent);
+  background-color: #FFF;
+  border: 1px solid var(--border-editorial);
+  border-left: 4px solid var(--color-accent);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.04);
+}
+
+.cover-line-item:nth-child(2) { border-left-color: var(--color-pop-teal); }
+.cover-line-item:nth-child(3) { border-left-color: var(--color-pop-orange); }
+.cover-line-item:nth-child(4) { border-left-color: var(--color-pop-blue); }
+
+.cover-line-item:hover {
+  background-color: #FFF;
+  transform: translateX(8px);
+  box-shadow: 6px 6px 0px var(--color-ink);
+}
+
+.cover-line-text {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.cover-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: var(--border-editorial-dark);
+  padding-top: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.btn-enter-issue {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--color-accent);
+  color: #FFF;
+  padding: 1.15rem 2.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px solid var(--color-ink);
+  transition: all 0.3s ease;
+  box-shadow: 5px 5px 0px var(--color-ink);
+}
+
+.btn-enter-issue:hover {
+  background-color: var(--color-pop-orange);
+  color: #FFF;
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px var(--color-ink);
+}
+
+/* ==========================================================================
+   02 — PERSISTENT NAVIGATION & MAGAZINE HEADER
+   ========================================================================== */
+#sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(248, 245, 238, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--color-ink);
+  transition: transform 0.3s ease;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--nav-height);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-logo {
+  font-family: var(--font-serif-header);
+  font-weight: 900;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.nav-page-counter {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-ink-muted);
+  border-left: 1px solid var(--color-ink-faint);
+  padding-left: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-muted);
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-accent);
+}
+
+.btn-index-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.45rem 0.9rem;
+  border: 2px solid var(--color-ink);
+  background-color: var(--color-pop-yellow);
+  color: var(--color-ink);
+  box-shadow: 3px 3px 0px var(--color-ink);
+}
+
+.btn-index-menu:hover {
+  background-color: var(--color-pop-orange);
+  color: #FFF;
+}
+
+/* --- Issue Index Drawer / Modal --- */
+.index-modal {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(24, 23, 22, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.index-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.index-content {
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  background-color: var(--bg-paper-light);
+  border-left: 3px solid var(--color-ink);
+  padding: 2.5rem 2rem;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.index-modal.open .index-content {
+  transform: translateX(0);
+}
+
+.index-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: var(--border-editorial-dark);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.index-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.index-item a {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  border-bottom: 1px dashed var(--color-ink-faint);
+  transition: all 0.2s ease;
+}
+
+.index-item a:hover {
+  background-color: var(--color-pop-yellow);
+  color: var(--color-ink);
+  padding-left: 1.2rem;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   03 — EDITOR'S NOTE
+   ========================================================================== */
+.editorial-section {
+  padding: 6rem 0;
+  border-bottom: var(--border-editorial);
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #FFF;
+  background-color: var(--color-accent);
+  padding: 0.25rem 0.65rem;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+  box-shadow: 3px 3px 0px var(--color-ink);
+}
+
+.section-title {
+  font-family: var(--font-serif-header);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  margin-bottom: 2.5rem;
+}
+
+.editors-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.editors-essay {
+  font-family: var(--font-serif-body);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--color-ink);
+}
+
+.editors-essay p {
+  margin-bottom: 1.5rem;
+}
+
+.dropcap::first-letter {
+  font-family: var(--font-serif-header);
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 4px;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.pull-quote {
+  font-family: var(--font-serif-header);
+  font-size: 1.8rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--color-ink);
+  border-left: 4px solid var(--color-pop-orange);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 2.5rem 0;
+  background-color: rgba(255, 209, 102, 0.2);
+}
+
+.editor-sidebar-card {
+  border: 3px solid var(--color-ink);
+  background-color: #FFF;
+  padding: 1.75rem;
+  position: relative;
+  box-shadow: 10px 10px 0px var(--color-pop-teal);
+}
+
+/* User's portrait - ULTRA CRISP, NO BLUR, NO GRAYSCALE */
+.editor-portrait {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border: 2px solid var(--color-ink);
+  margin-bottom: 1.5rem;
+  filter: none !important; /* Guarantee 100% crisp original color photo */
+  image-rendering: -webkit-optimize-contrast;
+  display: block;
+}
+
+/* ==========================================================================
+   04 — FEATURE STORIES
+   ========================================================================== */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.story-card {
+  background-color: #FFF;
+  border: 2px solid var(--color-ink);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.06);
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 0px var(--color-ink);
+}
+
+.story-card.featured-large { grid-column: span 8; border-top: 6px solid var(--color-accent); }
+.story-card.featured-medium { grid-column: span 4; border-top: 6px solid var(--color-pop-blue); }
+.story-card.featured-small { grid-column: span 6; border-top: 6px solid var(--color-pop-teal); }
+
+.story-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-ink-muted);
+  margin-bottom: 1rem;
+}
+
+.story-title {
+  font-family: var(--font-serif-header);
+  font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.story-excerpt {
+  font-family: var(--font-serif-body);
+  font-size: 1.05rem;
+  color: var(--color-ink-muted);
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.story-read-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+}
+
+.story-read-btn:hover {
+  color: var(--color-ink);
+}
+
+/* --- Story Reader Modal --- */
+.reader-modal {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(24, 23, 22, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 3000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 2rem 1rem;
+}
+
+.reader-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reader-container {
+  width: 100%;
+  max-width: 840px;
+  max-height: 90vh;
+  background-color: var(--bg-paper-light);
+  border: 3px solid var(--color-ink);
+  box-shadow: 16px 16px 0px var(--color-pop-orange);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.reader-header {
+  padding: 1.5rem 2rem;
+  border-bottom: var(--border-editorial-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-paper);
+}
+
+.reader-body {
+  padding: 3rem 3.5rem;
+  overflow-y: auto;
+  font-family: var(--font-serif-body);
+  font-size: 1.25rem;
+  line-height: 1.85;
+}
+
+.reader-body p {
+  margin-bottom: 1.75rem;
+}
+
+/* ==========================================================================
+   05 — THE AD ROOM
+   ========================================================================== */
+#ad-room {
+  background-color: #181716;
+  color: #F8F5EE;
+  padding: 6rem 0;
+  border-bottom: 4px solid var(--color-pop-orange);
+}
+
+#ad-room .section-label {
+  background-color: var(--color-pop-orange);
+  color: #181716;
+}
+
+#ad-room .section-title {
+  color: #FFF;
+}
+
+.ad-campaigns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.ad-card {
+  border: 2px solid rgba(248, 245, 238, 0.3);
+  background-color: #22201E;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 8px 8px 0px rgba(255,107,53,0.3);
+}
+
+.ad-brief-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-pop-yellow);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: block;
+  font-weight: bold;
+}
+
+.ad-boring-box {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-left: 3px solid #8A857B;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: #B5B0A4;
+}
+
+.ad-idea-headline {
+  font-family: var(--font-serif-header);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--color-pop-yellow);
+  margin-bottom: 1.5rem;
+}
+
+.ad-copy-display {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  background-color: #111;
+  padding: 1.25rem;
+  border: 1px solid #444;
+  line-height: 1.7;
+  color: #DDD;
+}
+
+.ad-poster-preview {
+  margin-top: 1.5rem;
+  border: 2px solid var(--color-pop-orange);
+  overflow: hidden;
+}
+
+.ad-poster-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   06 — THE INTERNET DESK
+   ========================================================================== */
+.internet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.browser-window {
+  border: 2px solid var(--color-ink);
+  background-color: #FFF;
+  box-shadow: 8px 8px 0px var(--color-pop-blue);
+}
+
+.browser-header {
+  background-color: var(--bg-paper-dark);
+  border-bottom: 2px solid var(--color-ink);
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.browser-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.browser-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background-color: #D8D2C2;
+}
+
+.browser-dot.red { background-color: var(--color-accent); }
+.browser-dot.yellow { background-color: var(--color-pop-yellow); }
+.browser-dot.green { background-color: var(--color-pop-teal); }
+
+.browser-url {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-ink-muted);
+  margin-left: auto;
+}
+
+.browser-body {
+  padding: 1.75rem;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin-top: 2.5rem;
+}
+
+.matrix-table th, .matrix-table td {
+  border: 2px solid var(--color-ink);
+  padding: 1.1rem;
+  text-align: left;
+}
+
+.matrix-table th {
+  background-color: var(--color-pop-yellow);
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   07 — THE WRITER'S NOTEBOOK
+   ========================================================================== */
+#writers-notebook {
+  background-color: #F1ECE0;
+}
+
+.notebook-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.2rem;
+  margin-top: 3rem;
+}
+
+.sticky-note {
+  background-color: #FFFDEB;
+  border: 2px solid var(--color-ink);
+  padding: 2rem;
+  box-shadow: 6px 8px 0px rgba(0,0,0,0.12);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.sticky-note:nth-child(1) { background-color: #FFFDEB; border-top: 5px solid var(--color-pop-orange); }
+.sticky-note:nth-child(2) { background-color: #E8F8F5; border-top: 5px solid var(--color-pop-teal); }
+.sticky-note:nth-child(3) { background-color: #F4ECF7; border-top: 5px solid var(--color-pop-purple); }
+.sticky-note:nth-child(4) { background-color: #EBF5FB; border-top: 5px solid var(--color-pop-blue); }
+.sticky-note:nth-child(5) { background-color: #FEF9E7; border-top: 5px solid var(--color-accent); }
+
+.sticky-note:nth-child(even) { transform: rotate(1.8deg); }
+.sticky-note:nth-child(odd) { transform: rotate(-1.8deg); }
+
+.sticky-note:hover {
+  transform: rotate(0deg) scale(1.04);
+  z-index: 10;
+  box-shadow: 10px 14px 0px var(--color-ink);
+}
+
+.note-quote {
+  font-family: var(--font-handwriting);
+  font-size: 1.8rem;
+  line-height: 1.35;
+  color: #181716;
+}
+
+.note-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-accent);
+  margin-top: 1.5rem;
+  display: block;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   08 — THE CONTENT LAB
+   ========================================================================== */
+.lab-card {
+  border: 3px solid var(--color-ink);
+  background-color: #FFF;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 10px 10px 0px var(--color-pop-teal);
+}
+
+.lab-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.lab-title {
+  font-family: var(--font-serif-header);
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.voice-switcher-nav {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.btn-voice {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.65rem 1.3rem;
+  border: 2px solid var(--color-ink);
+  background-color: var(--bg-paper);
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0px var(--color-ink);
+}
+
+.btn-voice.active, .btn-voice:hover {
+  background-color: var(--color-pop-orange);
+  color: #FFF;
+}
+
+.voice-output-box {
+  background-color: var(--color-pop-yellow);
+  border: 2px solid var(--color-ink);
+  padding: 2.2rem;
+  font-family: var(--font-serif-header);
+  font-size: 1.45rem;
+  font-weight: 700;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  box-shadow: 6px 6px 0px var(--color-ink);
+}
+
+/* ==========================================================================
+   09 — BEFORE / AFTER (Draggable Comparison Slider)
+   ========================================================================== */
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  border: 3px solid var(--color-ink);
+  box-shadow: 12px 12px 0px var(--color-pop-blue);
+  overflow: hidden;
+  user-select: none;
+  margin-top: 2rem;
+}
+
+.slider-before, .slider-after {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slider-before {
+  background-color: #E8E3D8;
+  color: #555;
+}
+
+.slider-after {
+  background-color: #FFF;
+  color: var(--color-ink);
+  width: 50%;
+  border-right: 4px solid var(--color-accent);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.slider-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.slider-before .slider-badge { color: #777; }
+.slider-after .slider-badge { color: var(--color-accent); }
+
+.slider-text {
+  font-family: var(--font-serif-header);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.slider-handle {
+  position: absolute;
+  top: 0; left: 50%; width: 44px; height: 100%;
+  transform: translateX(-50%);
+  z-index: 10;
+  cursor: ew-resize;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-handle-button {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-ink);
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* ==========================================================================
+   10 — THE RESEARCH DESK & 11 — BEHIND THE STORY
+   ========================================================================== */
+.timeline-horizontal {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding-bottom: 2rem;
+  scroll-snap-type: x mandatory;
+}
+
+.timeline-step-card {
+  min-width: 320px;
+  max-width: 360px;
+  background-color: #FFF;
+  border: 2px solid var(--color-ink);
+  padding: 2rem;
+  scroll-snap-align: start;
+  position: relative;
+  box-shadow: 6px 6px 0px var(--color-pop-purple);
+}
+
+.timeline-step-num {
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   12 — MY RULES / WRITER'S TOOLKIT
+   ========================================================================== */
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.rule-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: var(--border-editorial);
+}
+
+.rule-num {
+  font-family: var(--font-serif-header);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--color-accent);
+  line-height: 0.9;
+}
+
+.rule-title {
+  font-family: var(--font-serif-header);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.rule-desc {
+  font-family: var(--font-serif-body);
+  font-size: 1.15rem;
+  color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   13 — WHAT I ACTUALLY DO & 14 — MINI CASE STUDIES
+   ========================================================================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.service-card {
+  background-color: #FFF;
+  border: 2px solid var(--color-ink);
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 0px var(--color-ink);
+}
+
+.service-card:hover {
+  background-color: var(--color-pop-yellow);
+  color: var(--color-ink);
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0px var(--color-ink);
+}
+
+.service-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   18 — BACK COVER & FOOTER
+   ========================================================================== */
+#back-cover {
+  background-color: #141312;
+  color: #F8F5EE;
+  padding: 8rem 0 4rem 0;
+  position: relative;
+  text-align: center;
+}
+
+.back-masthead {
+  font-family: var(--font-serif-header);
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #FFF;
+  margin-bottom: 1rem;
+}
+
+.back-subtitle {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: var(--color-pop-yellow);
+  margin-bottom: 4rem;
+}
+
+.contact-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--color-accent);
+  color: #FFF;
+  padding: 1.4rem 3rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  border: 2px solid #FFF;
+  box-shadow: 6px 6px 0px var(--color-pop-yellow);
+  transition: all 0.3s ease;
+  margin-bottom: 5rem;
+}
+
+.contact-cta-btn:hover {
+  background-color: var(--color-pop-orange);
+  color: #FFF;
+  transform: translate(-3px, -3px);
+  box-shadow: 10px 10px 0px #FFF;
+}
+
+.footer-stats-bar {
+  border-top: 1px solid #333;
+  padding-top: 2.5rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #AAA;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .cover-main-grid, .editors-grid, .ad-campaigns-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stories-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .story-card.featured-large,
+  .story-card.featured-medium,
+  .story-card.featured-small {
+    grid-column: span 1;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .internet-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .cover-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .btn-enter-issue {
+    justify-content: center;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .rule-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}

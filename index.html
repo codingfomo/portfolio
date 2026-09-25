@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MARYADA — ISSUE 01 | Words, Ideas & Things Worth Noticing</title>
+  <meta name="description" content="An independent editorial publication & creative portfolio by Maryada Jain — Content Writer, Copywriter & Storyteller.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       01 — COVER / LANDING PAGE
+       ========================================================================== -->
+  <header id="cover">
+    <div class="cover-header">
+      <div class="cover-issue-meta">
+        <strong>MARYADA JAIN</strong> — DIGITAL PUBLICATION<br>
+        VOL. 01 · SEPTEMBER 2026<br>
+        <span class="pop-badge orange" style="margin-top:0.25rem;">A PORTFOLIO DISGUISED AS A MAGAZINE</span>
+      </div>
+      <div class="issue-stamp">ISSUE 01</div>
+    </div>
+
+    <div class="cover-main-grid">
+      <div class="cover-title-box">
+        <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
+          <span class="pop-badge yellow">★ INDEPENDENT EDITORIAL</span>
+          <span class="pop-badge teal">⚡ COPYWRITING &amp; IDEAS</span>
+        </div>
+        <h1 class="cover-masthead">MARYADA</h1>
+        <div class="cover-issue-tag">
+          <span>ISSUE 01</span>
+          <span style="font-size:0.9rem; font-weight:700; color:var(--color-pop-orange);">// 2026</span>
+        </div>
+        <p class="cover-tagline">Words, ideas &amp; things worth noticing.</p>
+        
+        <div class="cover-lines-list">
+          <div class="cover-line-item" onclick="scrollToSection('editors-note')">
+            <span class="cover-line-text">THE ART OF MAKING PEOPLE CARE</span>
+            <span class="font-mono" style="font-size:0.75rem; color:var(--color-accent); font-weight:bold;">PG. 03 →</span>
+          </div>
+          <div class="cover-line-item" onclick="scrollToSection('feature-stories')">
+            <span class="cover-line-text">WHY BORING CONTENT ISN'T REALLY BORING</span>
+            <span class="font-mono" style="font-size:0.75rem; color:var(--color-pop-teal); font-weight:bold;">PG. 04 →</span>
+          </div>
+          <div class="cover-line-item" onclick="scrollToSection('internet-desk')">
+            <span class="cover-line-text">THE INTERNET IS WEIRD. THAT'S WHY IT'S INTERESTING.</span>
+            <span class="font-mono" style="font-size:0.75rem; color:var(--color-pop-orange); font-weight:bold;">PG. 06 →</span>
+          </div>
+          <div class="cover-line-item" onclick="scrollToSection('before-after')">
+            <span class="cover-line-text">SAME IDEA. BETTER WORDS.</span>
+            <span class="font-mono" style="font-size:0.75rem; color:var(--color-pop-blue); font-weight:bold;">PG. 09 →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-image-container">
+        <div class="washi-tape"></div>
+        <div class="washi-tape pink"></div>
+        <div class="cover-frame">
+          <img src="assets/writer_cartoon.jpg" alt="Maryada Issue 01 Cartoon Writer Desk Artwork" class="cover-art-img">
+          <div style="margin-top:0.75rem; display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; color:var(--color-ink-muted); font-weight:bold;">
+            <span>FIG 1.1 — THE WRITER'S DESK (CARTOON ILLUS.)</span>
+            <span class="pop-badge purple" style="font-size:0.6rem;">ORIGINAL ART</span>
+          </div>
+        </div>
+        <div class="handwritten-annotation" style="position:absolute; bottom:-22px; left:-20px; background:#FFFDEB; padding:0.4rem 0.8rem; border:2px solid #181716; box-shadow:3px 3px 0px #181716;">
+          Yes, this is an actual portfolio! ↗
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <div class="font-mono" style="font-size:0.8rem; color:var(--color-ink-muted); font-weight:bold;">
+        WRITING · CONTENT · COPY · IDEAS
+      </div>
+      <button class="btn-enter-issue" onclick="enterMagazine()">
+        ENTER ISSUE 01 &rarr;
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       02 — PERSISTENT STICKY NAV & ISSUE INDEX
+       ========================================================================== -->
+  <nav id="sticky-nav">
+    <div class="container nav-container">
+      <div class="nav-brand">
+        <a href="#cover" class="nav-logo">MARYADA</a>
+        <span class="nav-page-counter" id="page-indicator">ISSUE 01 // PG. 01 OF 16</span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#editors-note" class="nav-link">01 EDITOR'S NOTE</a></li>
+        <li><a href="#feature-stories" class="nav-link">02 STORIES</a></li>
+        <li><a href="#ad-room" class="nav-link">03 AD ROOM</a></li>
+        <li><a href="#writers-notebook" class="nav-link">05 NOTEBOOK</a></li>
+        <li><a href="#content-lab" class="nav-link">06 LAB</a></li>
+        <li><a href="#before-after" class="nav-link">07 BEFORE/AFTER</a></li>
+      </ul>
+
+      <button class="btn-index-menu" onclick="toggleIndexModal()">
+        <span class="font-mono">INDEX</span>
+        <span style="font-size:1.1rem;">≡</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ISSUE INDEX MODAL -->
+  <div class="index-modal" id="indexModal" onclick="closeIndexModalOnBackdrop(event)">
+    <div class="index-content">
+      <div>
+        <div class="index-header">
+          <div class="issue-stamp">ISSUE 01 INDEX</div>
+          <button onclick="toggleIndexModal()" style="font-size:1.5rem; font-weight:bold;">✕</button>
+        </div>
+        <p class="font-mono" style="font-size:0.75rem; color:var(--color-ink-muted); margin-bottom:1.5rem; font-weight:bold;">
+          CONTENTS &amp; CHAPTER NAVIGATION
+        </p>
+
+        <ul class="index-list">
+          <li class="index-item"><a href="#editors-note" onclick="toggleIndexModal()"><span>01 EDITOR'S NOTE</span> <span>PG 03</span></a></li>
+          <li class="index-item"><a href="#feature-stories" onclick="toggleIndexModal()"><span>02 FEATURE STORIES</span> <span>PG 04</span></a></li>
+          <li class="index-item"><a href="#ad-room" onclick="toggleIndexModal()"><span>03 THE AD ROOM</span> <span>PG 05</span></a></li>
+          <li class="index-item"><a href="#internet-desk" onclick="toggleIndexModal()"><span>04 THE INTERNET DESK</span> <span>PG 06</span></a></li>
+          <li class="index-item"><a href="#writers-notebook" onclick="toggleIndexModal()"><span>05 WRITER'S NOTEBOOK</span> <span>PG 07</span></a></li>
+          <li class="index-item"><a href="#content-lab" onclick="toggleIndexModal()"><span>06 THE CONTENT LAB</span> <span>PG 08</span></a></li>
+          <li class="index-item"><a href="#before-after" onclick="toggleIndexModal()"><span>07 BEFORE / AFTER</span> <span>PG 09</span></a></li>
+          <li class="index-item"><a href="#behind-story" onclick="toggleIndexModal()"><span>08 BEHIND THE STORY</span> <span>PG 11</span></a></li>
+          <li class="index-item"><a href="#my-rules" onclick="toggleIndexModal()"><span>09 MY RULES</span> <span>PG 12</span></a></li>
+          <li class="index-item"><a href="#what-i-do" onclick="toggleIndexModal()"><span>10 WHAT I ACTUALLY DO</span> <span>PG 13</span></a></li>
+          <li class="index-item"><a href="#back-cover" onclick="toggleIndexModal()"><span>11 BACK COVER &amp; CONTACT</span> <span>PG 16</span></a></li>
+        </ul>
+      </div>
+
+      <div style="border-top: var(--border-editorial-dark); padding-top: 1rem; margin-top:2rem;" class="font-mono text-xs">
+        <p style="color:var(--color-accent); font-weight:bold; font-size:0.9rem;">MARYADA JAIN</p>
+        <p style="color:var(--color-ink-muted);">Currently collecting sentences.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       03 — EDITOR'S NOTE
+       ========================================================================== -->
+  <section id="editors-note" class="editorial-section">
+    <div class="container">
+      <span class="section-label">01 // EDITOR'S NOTE</span>
+      <h2 class="section-title">DEAR READER,</h2>
+
+      <div class="editors-grid">
+        <div class="editors-essay">
+          <p class="dropcap">
+            I have a slightly embarrassing habit of turning everything into a story. A simple conversation at a coffee shop becomes an observation about human behavior. A poorly phrased subway advertisement becomes an impromptu copywriting case study. A random thought at 2 AM becomes a multi-paragraph essay saved in my Notes app.
+          </p>
+          <p>
+            Somewhere between studying business, reading books, scrolling through the internet, and observing everyday life, I became obsessed with a single, persistent question:
+          </p>
+
+          <div class="pull-quote">
+            “Why do some words make us stop scrolling — while others disappear into the white noise of the internet?”
+          </div>
+
+          <p>
+            I write to figure that out.
+          </p>
+          <p>
+            Sometimes that means crafting a 1,500-word deep dive into brand strategy. Sometimes it means deleting 20 redundant words from a single headline until the one word that actually matters finally gets room to breathe. And sometimes it means staring at a blank document for an unreasonable amount of time asking: <em>Is this clear? Is this honest? Does anyone actually care?</em>
+          </p>
+          <p>
+            This little digital magazine is a collection of all of it — the stories I've written, the things I've noticed, the copywriting experiments I've run, and the logic behind how I make boring things interesting.
+          </p>
+          <p>
+            Welcome to Issue 01.
+          </p>
+
+          <div style="margin-top: 2.5rem; border-top: var(--border-editorial-dark); padding-top: 1.5rem;">
+            <p style="font-family:var(--font-serif-header); font-size:1.8rem; font-weight:700;">MARYADA JAIN</p>
+            <p class="font-mono" style="font-size:0.85rem; color:var(--color-accent); font-weight:bold;">WRITER · CONTENT · COPY · IDEAS</p>
+          </div>
+        </div>
+
+        <div class="editor-sidebar-card">
+          <div class="washi-tape" style="top:-12px; left:20px; background-color:rgba(6,214,160,0.7);"></div>
+          <!-- Crisp Portrait Image of Maryada - No Blur -->
+          <img src="assets/maryada_portrait.jpg" alt="Maryada Jain - Writer & Content Strategist" class="editor-portrait">
+          <div style="font-family:var(--font-mono); font-size:0.8rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+              <span style="font-weight:bold; color:var(--color-ink); font-size:0.9rem;">MARYADA JAIN</span>
+              <span class="pop-badge yellow" style="font-size:0.6rem;">AUTHOR</span>
+            </div>
+            <p style="color:var(--color-ink-muted); margin-bottom:0.75rem;">Content Writer &amp; Storyteller</p>
+            <hr style="border:none; border-top:var(--border-editorial); margin: 0.75rem 0;">
+            <p><span style="color:var(--color-accent); font-weight:bold;">SPECIALTY:</span> Long-form essays, sharp copywriting, brand positioning &amp; human storytelling.</p>
+          </div>
+          <span class="handwritten-annotation" style="margin-top:1.5rem;">
+            — probably overthought this ↗
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       04 — FEATURE STORIES
+       ========================================================================== -->
+  <section id="feature-stories" class="editorial-section" style="background-color: var(--bg-paper-light);">
+    <div class="container">
+      <span class="section-label">02 // FEATURE STORIES</span>
+      <h2 class="section-title">THINGS WORTH READING</h2>
+      <p class="font-serif-body" style="font-size:1.2rem; color:var(--color-ink-muted); max-width:600px;">
+        Selected essays and articles exploring culture, brand messaging, and human attention span.
+      </p>
+
+      <div class="stories-grid">
+        <!-- Story 01 -->
+        <article class="story-card featured-large">
+          <div>
+            <div class="story-meta">
+              <span class="pop-badge orange">ESSAY · 7 MIN READ</span>
+              <span>VOL. 01 / ARTICLE 01</span>
+            </div>
+            <h3 class="story-title">WHY WE DON'T REALLY HAVE AN ATTENTION SPAN PROBLEM</h3>
+            <p class="story-excerpt">
+              Everyone keeps saying people have shorter attention spans. Maybe. Or maybe we've simply become better at recognizing when something isn't worth our attention. We don't have a problem spending three hours watching a documentary or reading a 4,000-word Reddit rabbit hole...
+            </p>
+          </div>
+          <div>
+            <hr class="thin-hr" style="margin:1rem 0;">
+            <button class="story-read-btn" onclick="openStoryModal(1)">READ STORY &rarr;</button>
+          </div>
+        </article>
+
+        <!-- Story 02 -->
+        <article class="story-card featured-medium">
+          <div>
+            <div class="story-meta">
+              <span class="pop-badge blue">BRAND · 5 MIN READ</span>
+              <span>ARTICLE 02</span>
+            </div>
+            <h3 class="story-title">WHY SOME BRANDS FEEL LIKE PEOPLE</h3>
+            <p class="story-excerpt">
+              You probably know brands you would never buy from but somehow still like. That's interesting. Brands don't technically have personalities. They don't wake up grumpy or have favorite songs. And yet we describe them like people...
+            </p>
+          </div>
+          <div>
+            <hr class="thin-hr" style="margin:1rem 0;">
+            <button class="story-read-btn" onclick="openStoryModal(2)">READ STORY &rarr;</button>
+          </div>
+        </article>
+
+        <!-- Story 03 -->
+        <article class="story-card featured-small">
+          <div>
+            <div class="story-meta">
+              <span class="pop-badge teal">CULTURE · 4 MIN READ</span>
+              <span>ARTICLE 03</span>
+            </div>
+            <h3 class="story-title">THE STRANGE COMFORT OF BEING BAD AT SOMETHING</h3>
+            <p class="story-excerpt">
+              We're surrounded by people who are already good at everything. Someone is learning piano. Someone is building a startup. Meanwhile, you're watching a YouTube tutorial on how to fold a fitted sheet...
+            </p>
+          </div>
+          <div>
+            <hr class="thin-hr" style="margin:1rem 0;">
+            <button class="story-read-btn" onclick="openStoryModal(3)">READ STORY &rarr;</button>
+          </div>
+        </article>
+
+        <!-- Story 04 -->
+        <article class="story-card featured-small">
+          <div>
+            <div class="story-meta">
+              <span class="pop-badge purple">LONG READ · 8 MIN READ</span>
+              <span>ARTICLE 04</span>
+            </div>
+            <h3 class="story-title">WHY BORING CONTENT ISN'T REALLY BORING</h3>
+            <p class="story-excerpt">
+              There are very few boring subjects. There are, however, an enormous number of boring ways to talk about them. Take accounting, B2B SaaS, or insurance. The writer isn't responsible for inventing magic — they're responsible for finding where the story already lives...
+            </p>
+          </div>
+          <div>
+            <hr class="thin-hr" style="margin:1rem 0;">
+            <button class="story-read-btn" onclick="openStoryModal(4)">READ STORY &rarr;</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY READER MODAL -->
+  <div class="reader-modal" id="readerModal" onclick="closeReaderModalOnBackdrop(event)">
+    <div class="reader-container">
+      <div class="reader-header">
+        <div>
+          <span class="issue-stamp" id="modalCategoryTag">ESSAY</span>
+          <span class="font-mono text-xs" style="margin-left:0.5rem; color:var(--color-ink-muted); font-weight:bold;" id="modalReadTime">7 MIN READ</span>
+        </div>
+        <button onclick="closeStoryModal()" style="font-size:1.2rem; font-weight:bold; background-color:var(--color-accent); color:#FFF; padding:0.4rem 0.8rem; border:2px solid #181716;">✕ CLOSE</button>
+      </div>
+
+      <div class="reader-body" id="modalStoryBody">
+        <!-- Story content inserted dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       05 — THE AD ROOM
+       ========================================================================== -->
+  <section id="ad-room">
+    <div class="container">
+      <span class="section-label">03 // THE AD ROOM</span>
+      <h2 class="section-title">WORDS THAT SELL WITHOUT SOUNDING LIKE THEY SELL</h2>
+      <p style="color:#B5B0A4; font-size:1.1rem; max-width:650px;">
+        A showcase of copywriting, campaign positioning, and social copy that speaks like a human being instead of a press release.
+      </p>
+
+      <div class="ad-campaigns-grid">
+        <!-- Campaign 01: Coffee -->
+        <div class="ad-card">
+          <div>
+            <span class="ad-brief-tag">CAMPAIGN 01 · COFFEE BRAND</span>
+            <p style="font-size:0.85rem; color:#DDD; margin-bottom:0.75rem;"><strong>THE BRIEF:</strong> Reach tired young professionals without generic caffeine clichés.</p>
+            
+            <div class="ad-boring-box">
+              <strong style="color:#888;">THE BORING VERSION:</strong><br>
+              “Premium coffee for your everyday moments.”
+            </div>
+
+            <div class="ad-idea-headline">
+              YOUR 4 PM PERSONALITY DESERVES BETTER COFFEE.
+            </div>
+
+            <div class="ad-copy-display">
+              9 AM: “Today is going to be productive.”<br>
+              4 PM: “What if I simply disappeared?”<br>
+              4:03 PM: Coffee.<br><br>
+              <span style="color:var(--color-pop-yellow); font-weight:bold;">We're not saying it'll fix your life. But it'll help you get through the meeting.</span>
+            </div>
+          </div>
+
+          <div class="ad-poster-preview">
+            <img src="assets/coffee_ad_poster.jpg" alt="Your 4 PM Personality Deserves Better Coffee Campaign Poster" class="ad-poster-img">
+          </div>
+        </div>
+
+        <!-- Campaign 02: Notebook -->
+        <div class="ad-card">
+          <div>
+            <span class="ad-brief-tag">CAMPAIGN 02 · STATIONERY BRAND</span>
+            <p style="font-size:0.85rem; color:#DDD; margin-bottom:0.75rem;"><strong>THE BRIEF:</strong> Position a physical paper notebook against endless digital note apps.</p>
+            
+            <div class="ad-boring-box">
+              <strong style="color:#888;">THE BORING VERSION:</strong><br>
+              “High-quality notebook with premium 100gsm paper.”
+            </div>
+
+            <div class="ad-idea-headline">
+              FOR THOUGHTS THAT REFUSE TO STAY IN YOUR HEAD.
+            </div>
+
+            <div class="ad-copy-display">
+              • The business idea you had in the shower.<br>
+              • The comeback you thought of three hours later.<br>
+              • The plot twist you've been thinking about since 2017.<br><br>
+              <span style="color:var(--color-pop-yellow); font-weight:bold;">Give them somewhere to go. Your Notes app has seen enough.</span>
+            </div>
+          </div>
+
+          <div style="background-color:#1B1A18; border:2px solid #444; padding:1.5rem; margin-top:1.5rem; font-family:var(--font-mono); font-size:0.8rem; color:#AAA;">
+            <p style="color:var(--color-pop-yellow); font-weight:bold; margin-bottom:0.5rem;">INSTAGRAM CAROUSEL CONCEPT:</p>
+            <p>Slide 1: You went into the bookstore for one book.</p>
+            <p>Slide 2: You left with four.</p>
+            <p>Slide 3: You don't remember what happened.</p>
+            <p style="color:#FFF; font-weight:bold;">Slide 4: Neither does your bank account. See you next week.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       06 — THE INTERNET DESK
+       ========================================================================== -->
+  <section id="internet-desk" class="editorial-section">
+    <div class="container">
+      <span class="section-label">04 // THE INTERNET DESK</span>
+      <h2 class="section-title">THINGS I FOUND WHILE PROCRASTINATING</h2>
+      <p class="font-serif-body" style="font-size:1.15rem; color:var(--color-ink-muted); max-width:650px;">
+        Observations on digital culture, internet language, and how social media changes the way we speak.
+      </p>
+
+      <div class="internet-grid">
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-dots">
+              <span class="browser-dot red"></span>
+              <span class="browser-dot yellow"></span>
+              <span class="browser-dot green"></span>
+            </div>
+            <span class="browser-url">linkedin.com/in/everyone</span>
+          </div>
+          <div class="browser-body">
+            <h3 class="font-serif-header" style="font-size:1.3rem; margin-bottom:0.75rem;">WHY EVERYONE ON LINKEDIN SOUNDS LIKE THE SAME PERSON</h3>
+            <p style="font-size:0.95rem; color:var(--color-ink-muted);">
+              You know the post: <em>“Today I learned a vital lesson about leadership...”</em> followed by a story about missing a train. Burned toast becomes resilience. A bad date becomes communication strategy. Losing your keys becomes high-performance team building.
+            </p>
+          </div>
+        </div>
+
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-dots">
+              <span class="browser-dot red"></span>
+              <span class="browser-dot yellow"></span>
+              <span class="browser-dot green"></span>
+            </div>
+            <span class="browser-url">culture-decoder.internal</span>
+          </div>
+          <div class="browser-body">
+            <h3 class="font-serif-header" style="font-size:1.3rem; margin-bottom:0.75rem;">MEMES ARE JUST CULTURE MOVING REALLY FAST</h3>
+            <p style="font-size:0.95rem; color:var(--color-ink-muted);">
+              A meme tells you what people secretly relate to, what phrase suddenly became annoying, and what an entire generation feels. That's why brands shouldn't ask “What's trending?” — they should ask “Why is this resonating?”
+            </p>
+          </div>
+        </div>
+
+        <div class="browser-window">
+          <div class="browser-header">
+            <div class="browser-dots">
+              <span class="browser-dot red"></span>
+              <span class="browser-dot yellow"></span>
+              <span class="browser-dot green"></span>
+            </div>
+            <span class="browser-url">notes://thought-092.txt</span>
+          </div>
+          <div class="browser-body">
+            <h3 class="font-serif-header" style="font-size:1.3rem; margin-bottom:0.75rem;">THE INTERNET TURNED EVERYONE INTO A BRAND</h3>
+            <p style="font-size:0.95rem; color:var(--color-ink-muted);">
+              We don't just post pictures anymore; we curate aesthetic portfolios of our weekends. The challenge for actual writers is cutting through the polish to say something genuinely human.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison Matrix -->
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>THE ALGORITHM WANTS</th>
+            <th>THE WRITER WANTS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Consistency &amp; Daily Output</td>
+            <td><strong>Something worth saying</strong></td>
+          </tr>
+          <tr>
+            <td>Three urgent hooks in 3 seconds</td>
+            <td><strong>One good, unforgettable idea</strong></td>
+          </tr>
+          <tr>
+            <td>Engagement &amp; Comment bait</td>
+            <td><strong>Did anyone actually feel something?</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       07 — THE WRITER'S NOTEBOOK
+       ========================================================================== -->
+  <section id="writers-notebook" class="editorial-section">
+    <div class="container">
+      <span class="section-label">05 // THE WRITER'S NOTEBOOK</span>
+      <h2 class="section-title">THOUGHTS THAT WEREN'T SUPPOSED TO BECOME ANYTHING</h2>
+      <p class="font-serif-body" style="font-size:1.15rem; color:var(--color-ink-muted); max-width:650px;">
+        Unfiltered thoughts, saved sentences, and marginal notes from my digital and physical scratchpads.
+      </p>
+
+      <div class="notebook-grid">
+        <div class="sticky-note">
+          <p class="note-quote">“Maybe procrastination is just your brain asking for a better reason.”</p>
+          <span class="note-tag">#NOTE 001 · 2:14 AM</span>
+        </div>
+
+        <div class="sticky-note">
+          <p class="note-quote">“Every brand wants to sound human. Most of them sound like HR.”</p>
+          <span class="note-tag">#NOTE 002 · BRANDING</span>
+        </div>
+
+        <div class="sticky-note">
+          <p class="note-quote">“I don't collect quotes. I collect sentences that make me jealous.”</p>
+          <span class="note-tag">#NOTE 003 · CRAFT</span>
+        </div>
+
+        <div class="sticky-note">
+          <p class="note-quote">“Your Notes app knows more about you than most people do.”</p>
+          <span class="note-tag">#NOTE 004 · OBSERVATION</span>
+        </div>
+
+        <div class="sticky-note">
+          <p class="note-quote">“Somewhere between ‘I should sleep’ and ‘one more episode’ lives the entire human condition.”</p>
+          <span class="note-tag">#NOTE 005 · ESSAY SEED</span>
+        </div>
+
+        <div class="sticky-note">
+          <p class="note-quote">“A good headline doesn't explain why you should care. It makes you curious enough to find out.”</p>
+          <span class="note-tag">#NOTE 006 · COPYWRITING</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       08 — THE CONTENT LAB
+       ========================================================================== -->
+  <section id="content-lab" class="editorial-section" style="background-color: var(--bg-paper-light);">
+    <div class="container">
+      <span class="section-label">06 // THE CONTENT LAB</span>
+      <h2 class="section-title">EXPERIMENTS IN MAKING BORING THINGS INTERESTING</h2>
+
+      <!-- Experiment 001 -->
+      <div class="lab-card">
+        <span class="lab-meta">EXPERIMENT #001 · COPYWRITING TRANSFORM</span>
+        <h3 class="lab-title">CAN I MAKE WATER SOUND INTERESTING?</h3>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.5rem;">
+          <div style="background-color:#EBE5D8; padding:1.25rem; border-left:4px solid #888; border:2px solid var(--color-ink);">
+            <strong class="font-mono text-xs" style="color:#444;">INPUT / BORING DIRECTIVE:</strong>
+            <p style="font-family:var(--font-serif-body); font-size:1.1rem; margin-top:0.5rem;">“Stay hydrated throughout the day.”</p>
+          </div>
+          <div style="background-color:#FFF; padding:1.25rem; border-left:4px solid var(--color-accent); border:2px solid var(--color-ink); box-shadow:4px 4px 0px var(--color-accent);">
+            <strong class="font-mono text-xs" style="color:var(--color-accent);">OUTPUT / MARYADA'S REWRITE:</strong>
+            <p style="font-family:var(--font-serif-header); font-size:1.25rem; font-weight:700; margin-top:0.5rem; color:var(--color-ink);">
+              “Your body has been sending you notifications all day. You keep clicking ‘remind me later.’”
+            </p>
+          </div>
+        </div>
+        <p class="font-mono text-xs" style="color:var(--color-ink-muted); font-weight:bold;">
+          LESSON: Don't lecture the reader. Reframe the feeling they already have.
+        </p>
+      </div>
+
+      <!-- Experiment 002 -->
+      <div class="lab-card">
+        <span class="lab-meta">EXPERIMENT #002 · BRAND VOICE SWITCHER</span>
+        <h3 class="lab-title">ONE PRODUCT. FIVE PERSONALITIES.</h3>
+        <p class="font-serif-body" style="font-size:1.1rem; color:var(--color-ink-muted); margin-bottom:1.5rem;">
+          PRODUCT: A standard blank paper notebook. Click below to switch tone of voice:
+        </p>
+
+        <div class="voice-switcher-nav">
+          <button class="btn-voice active" onclick="switchVoice('luxury', this)">LUXURY BRAND</button>
+          <button class="btn-voice" onclick="switchVoice('genz', this)">GEN Z</button>
+          <button class="btn-voice" onclick="switchVoice('newspaper', this)">NEWSPAPER</button>
+          <button class="btn-voice" onclick="switchVoice('chaotic', this)">CHAOTIC FRIEND</button>
+          <button class="btn-voice" onclick="switchVoice('poet', this)">POET</button>
+        </div>
+
+        <div class="voice-output-box" id="voiceOutput">
+          “For thoughts worth keeping.”
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       09 — BEFORE / AFTER (Interactive Draggable Slider)
+       ========================================================================== -->
+  <section id="before-after" class="editorial-section">
+    <div class="container">
+      <span class="section-label">07 // BEFORE / AFTER</span>
+      <h2 class="section-title">SAME IDEA. BETTER WORDS.</h2>
+      <p class="font-serif-body" style="font-size:1.15rem; color:var(--color-ink-muted); max-width:650px;">
+        Drag the center slider left &amp; right to compare generic corporate jargon against sharp, clear copywriting.
+      </p>
+
+      <div class="slider-container" id="beforeAfterSlider">
+        <div class="slider-before">
+          <span class="slider-badge" style="color:#666;">BEFORE — BORING JARGON</span>
+          <div class="slider-text">
+            “We provide innovative financial solutions for modern businesses to optimize cash flow.”
+          </div>
+        </div>
+
+        <div class="slider-after" id="sliderAfter">
+          <span class="slider-badge">AFTER — MARYADA'S COPY</span>
+          <div class="slider-text">
+            “YOUR MONEY IS COMPLICATED ENOUGH. YOUR SOFTWARE SHOULDN'T BE.”
+          </div>
+        </div>
+
+        <div class="slider-handle" id="sliderHandle">
+          <div class="slider-handle-button">↔</div>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem; display:grid; grid-template-columns:repeat(4, 1fr); gap:1rem; font-family:var(--font-mono); font-size:0.8rem; text-align:center;">
+        <div style="border:2px solid var(--color-ink); padding:0.75rem; background:var(--color-pop-yellow); font-weight:bold;">✓ LESS JARGON</div>
+        <div style="border:2px solid var(--color-ink); padding:0.75rem; background:var(--color-pop-teal); font-weight:bold; color:#FFF;">✓ MORE SPECIFIC</div>
+        <div style="border:2px solid var(--color-ink); padding:0.75rem; background:var(--color-pop-orange); font-weight:bold; color:#FFF;">✓ CLEARER BENEFIT</div>
+        <div style="border:2px solid var(--color-ink); padding:0.75rem; background:var(--color-pop-blue); font-weight:bold; color:#FFF;">✓ STRONGER VOICE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10 — THE RESEARCH DESK & 11 — BEHIND THE STORY
+       ========================================================================== -->
+  <section id="behind-story" class="editorial-section" style="background-color: var(--bg-paper-light);">
+    <div class="container">
+      <span class="section-label">08 &amp; 09 // PROCESS &amp; ANATOMY</span>
+      <h2 class="section-title">BEHIND THE STORY: HOW THE WORDS HAPPENED</h2>
+      <p class="font-serif-body" style="font-size:1.15rem; color:var(--color-ink-muted); margin-bottom:2.5rem;">
+        Scroll horizontally to trace a thought from messy scribble to finished piece.
+      </p>
+
+      <div class="timeline-horizontal">
+        <div class="timeline-step-card">
+          <div class="timeline-step-num">01</div>
+          <h4 class="font-mono text-xs" style="color:var(--color-ink-muted); font-weight:bold;">THE SCRIBBLE</h4>
+          <p style="font-family:var(--font-serif-body); font-size:1.1rem; margin-top:0.5rem;">
+            “Why do people abandon projects they actually care about?”
+          </p>
+        </div>
+
+        <div class="timeline-step-card">
+          <div class="timeline-step-num">02</div>
+          <h4 class="font-mono text-xs" style="color:var(--color-ink-muted); font-weight:bold;">THE QUESTION</h4>
+          <p style="font-family:var(--font-serif-body); font-size:1.1rem; margin-top:0.5rem;">
+            Is it really a discipline problem? Or is the reward simply placed too far away?
+          </p>
+        </div>
+
+        <div class="timeline-step-card">
+          <div class="timeline-step-num">03</div>
+          <h4 class="font-mono text-xs" style="color:var(--color-ink-muted); font-weight:bold;">THE RABBIT HOLE</h4>
+          <p style="font-family:var(--font-serif-body); font-size:1.1rem; margin-top:0.5rem;">
+            24 open tabs. Reddit threads, behavioral psychology books, interviews with creators.
+          </p>
+        </div>
+
+        <div class="timeline-step-card">
+          <div class="timeline-step-num">04</div>
+          <h4 class="font-mono text-xs" style="color:var(--color-accent); font-weight:bold;">THE ANGLE</h4>
+          <p style="font-family:var(--font-serif-header); font-size:1.2rem; font-weight:700; color:var(--color-accent); margin-top:0.5rem;">
+            “Motivation isn't missing. The feedback loop is.”
+          </p>
+        </div>
+
+        <div class="timeline-step-card">
+          <div class="timeline-step-num">05</div>
+          <h4 class="font-mono text-xs" style="color:var(--color-ink-muted); font-weight:bold;">THE RED PEN</h4>
+          <p style="font-family:var(--font-serif-body); font-size:1.1rem; margin-top:0.5rem;">
+            Delete 400 words. Cut the paragraph I was particularly proud of because it didn't serve the point.
+          </p>
+        </div>
+
+        <div class="timeline-step-card">
+          <div class="timeline-step-num">06</div>
+          <h4 class="font-mono text-xs" style="color:var(--color-accent); font-weight:bold;">THE STORY</h4>
+          <p style="font-family:var(--font-serif-body); font-size:1.1rem; margin-top:0.5rem; font-weight:bold;">
+            A messy thought becomes something another human being can understand. That's the work.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       12 — MY RULES / WRITER'S TOOLKIT
+       ========================================================================== -->
+  <section id="my-rules" class="editorial-section">
+    <div class="container">
+      <span class="section-label">10 // MY RULES</span>
+      <h2 class="section-title">THE WRITER'S TOOLKIT</h2>
+
+      <div class="rules-list">
+        <div class="rule-item">
+          <div class="rule-num">01</div>
+          <div>
+            <h3 class="rule-title">START LATER.</h3>
+            <p class="rule-desc">The interesting part is usually buried three sentences down. Delete your intro.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-num">02</div>
+          <div>
+            <h3 class="rule-title">BE SPECIFIC.</h3>
+            <p class="rule-desc">“Nice” means nothing. “High quality” is invisible. Describe the exact detail.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-num">03</div>
+          <div>
+            <h3 class="rule-title">READ IT OUT LOUD.</h3>
+            <p class="rule-desc">If your voice stumbles or you wouldn't say it in real life, rewrite it.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-num">04</div>
+          <div>
+            <h3 class="rule-title">KILL YOUR FAVOURITE SENTENCE.</h3>
+            <p class="rule-desc">If a line doesn't advance the story, it doesn't get special treatment.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-num">05</div>
+          <div>
+            <h3 class="rule-title">CURIOSITY BEATS CLEVERNESS.</h3>
+            <p class="rule-desc">Don't try to impress the reader. Give them a reason to continue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       13 — WHAT I ACTUALLY DO
+       ========================================================================== -->
+  <section id="what-i-do" class="editorial-section" style="background-color: var(--bg-paper-light);">
+    <div class="container">
+      <span class="section-label">11 // WHAT I ACTUALLY DO</span>
+      <h2 class="section-title">WHAT I DO WITH WORDS</h2>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h3 class="service-title">LONG-FORM</h3>
+          <p style="font-size:0.85rem; color:var(--color-ink-muted);">Articles · Essays · Thought Leadership · Case Studies</p>
+        </div>
+        <div class="service-card">
+          <h3 class="service-title">SHORT-FORM</h3>
+          <p style="font-size:0.85rem; color:var(--color-ink-muted);">Social Posts · Captions · Hooks · Microcopy</p>
+        </div>
+        <div class="service-card">
+          <h3 class="service-title">BRAND</h3>
+          <p style="font-size:0.85rem; color:var(--color-ink-muted);">Brand Voice · Campaign Concepts · Taglines</p>
+        </div>
+        <div class="service-card">
+          <h3 class="service-title">STRATEGY</h3>
+          <p style="font-size:0.85rem; color:var(--color-ink-muted);">Content Pillars · Content Calendars · Research</p>
+        </div>
+        <div class="service-card">
+          <h3 class="service-title">EDITING</h3>
+          <p style="font-size:0.85rem; color:var(--color-ink-muted);">Rewriting · Simplifying · Tightening Jargon</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       18 — BACK COVER & CONTACT
+       ========================================================================== -->
+  <footer id="back-cover">
+    <div class="container">
+      <div class="issue-stamp" style="background-color:var(--color-pop-orange); margin-bottom:2rem;">ISSUE 01 FINAL PAGE</div>
+      <h2 class="back-masthead">THE END.</h2>
+      <p class="back-subtitle">UNTIL THE NEXT ISSUE.</p>
+
+      <div style="max-width:500px; margin:0 auto 3rem auto;">
+        <p style="font-family:var(--font-serif-header); font-size:1.8rem; font-weight:bold; color:#FFF;">MARYADA JAIN</p>
+        <p class="font-mono text-xs" style="color:#AAA;">Writer · Content · Copy · Ideas</p>
+        <p class="font-serif-body" style="font-style:italic; color:#CCC; margin-top:0.75rem;">“Currently collecting sentences.”</p>
+      </div>
+
+      <button class="contact-cta-btn" onclick="openContactModal()">
+        LET'S MAKE SOMETHING WORTH READING &rarr;
+      </button>
+
+      <div class="footer-stats-bar">
+        <div>WORD COUNT: <strong>1,247</strong></div>
+        <div>COFFEE COUNT: <strong>03</strong></div>
+        <div>OPEN TABS: <strong>17</strong></div>
+        <div>APPROVAL RATING: <strong style="color:var(--color-pop-yellow);">[YES]</strong></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CONTACT MODAL -->
+  <div class="reader-modal" id="contactModal" onclick="closeContactModalOnBackdrop(event)">
+    <div class="reader-container" style="max-width:540px;">
+      <div class="reader-header">
+        <span class="issue-stamp">REACH OUT</span>
+        <button onclick="closeContactModal()" style="font-size:1.2rem; font-weight:bold; background:var(--color-accent); color:#FFF; padding:0.3rem 0.6rem;">✕</button>
+      </div>
+      <div class="reader-body" style="padding:2.5rem;">
+        <h3 class="font-serif-header" style="font-size:1.8rem; margin-bottom:1rem;">LET'S TALK WORDS.</h3>
+        <p style="font-size:1rem; color:var(--color-ink-muted); margin-bottom:1.5rem;">
+          Whether you need an essay written, brand copy sharpened, or a complete content strategy built — I'd love to chat.
+        </p>
+
+        <form onsubmit="handleFormSubmit(event)" style="display:flex; flex-direction:column; gap:1rem;">
+          <div>
+            <label class="font-mono text-xs" style="display:block; margin-bottom:0.25rem; font-weight:bold;">YOUR NAME</label>
+            <input type="text" required placeholder="e.g. Sarah Jenkins" style="width:100%; padding:0.75rem; border:2px solid var(--color-ink); font-family:var(--font-sans);">
+          </div>
+          <div>
+            <label class="font-mono text-xs" style="display:block; margin-bottom:0.25rem; font-weight:bold;">EMAIL ADDRESS</label>
+            <input type="email" required placeholder="sarah@example.com" style="width:100%; padding:0.75rem; border:2px solid var(--color-ink); font-family:var(--font-sans);">
+          </div>
+          <div>
+            <label class="font-mono text-xs" style="display:block; margin-bottom:0.25rem; font-weight:bold;">WHAT ARE WE BUILDING?</label>
+            <textarea rows="4" required placeholder="Tell me a bit about your project or idea..." style="width:100%; padding:0.75rem; border:2px solid var(--color-ink); font-family:var(--font-sans);"></textarea>
+          </div>
+          <button type="submit" class="btn-enter-issue" style="width:100%; justify-content:center;">SEND MESSAGE &rarr;</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
